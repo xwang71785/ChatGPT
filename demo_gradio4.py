@@ -14,17 +14,18 @@ import random
 from http import HTTPStatus
 from prompt import instr_narr01, instr_narr02, instr_narr03, instr_narr04, instr_narr05, instr_narr06
 from prompt import instr_argu01, instr_argu02, instr_argu03, instr_argu04, instr_argu05, instr_argu06
-from apikey import ocr_host, ocr_client_id, ocr_client_secret, ocr_request_url
-from apikey import ernie_host, ernie_client_id, ernie_client_secret, ernie_request_url
 
+auth_host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&'
+ocr_request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/handwriting"
+ernie_request_url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token="
 
 # 获取百度OCR模型的ocr_access_token
-ocr_token_url = ocr_host + ocr_client_id + ocr_client_secret
+ocr_token_url = auth_host + os.getenv('ocr_client_id') + os.getenv('ocr_client_secret')
 ocr_response = requests.get(ocr_token_url)
 ocr_access_token = ocr_response.json().get('access_token')
 
 # 获取ERNIE-4.0模型的ernie_access_token
-url = ernie_host + ernie_client_id + ernie_client_secret
+url = auth_host + os.getenv('ernie_client_id') + os.getenv('ernie_client_secret')
 payload = json.dumps("")
 headers = {
     'Content-Type': 'application/json',
@@ -179,8 +180,8 @@ def process_batch(image_file, genres, model):
 with gr.Blocks() as demo:
     gr.Markdown(
     """
-    # 中学语文作文批改系统
-    测试版本0.5.2
+    # 中学作文批改系统
+    测试版本0.5.3
     ### 允许拍照上传，请尽力保持纸张平整，不留边框，字迹清晰，
     """)
     with gr.Tab("记叙文批改"):
