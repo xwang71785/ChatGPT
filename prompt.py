@@ -6,6 +6,8 @@ ali_instruction = '你是一位初中语文老师负责给学生的作文按100�
 ali_phrase = '你是一位初中语文老师,请指出学生作文中使用不当的词语,包括但不限于错字,别字,过分夸张的比喻,有违上下文表达意境的描述等。'
 ali_revise = '你是一位初中语文教师,请为学生改写作文,在保留原文的人物,对话,行为和故事情节的描写的前提下,加深对人物的细节刻画,提高用词准确,语句流畅,段落衔接自然,中心思想突出.'
 
+instr_eng = 'This is an English instruction. Please revise the text. Please do not return anything other than the revised text in English.'
+
 instr_narr01 = '这是篇新的记叙文作文,作为一个中学语文教师,认真阅读全文,并指出作文在人物刻画方面的不足之处.满分10分请打分'
 instr_narr02 = '这是篇新的记叙文作文,作为一个中学语文教师,认真阅读全文,并指出作文在情感描写方面的不足之处.满分10分请打分'
 instr_narr03 = '这是篇新的记叙文作文,作为一个中学语文教师,认真阅读全文,并指出作文在故事叙述方面的不足之处.满分10分请打分'

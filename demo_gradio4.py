@@ -14,6 +14,7 @@ import random
 from http import HTTPStatus
 from prompt import instr_narr01, instr_narr02, instr_narr03, instr_narr04, instr_narr05, instr_narr06
 from prompt import instr_argu01, instr_argu02, instr_argu03, instr_argu04, instr_argu05, instr_argu06
+from prompt import instr_eng
 
 auth_host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&'
 ocr_request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/handwriting"
@@ -181,9 +182,21 @@ with gr.Blocks() as demo:
     gr.Markdown(
     """
     # 中学作文批改系统
-    测试版本0.5.3
+    测试版本0.5.5
     ### 允许拍照上传，请尽力保持纸张平整，不留边框，字迹清晰，
     """)
+    with gr.Tab("英语作文批改"):
+        with gr.Column():
+            img21 = gr.Image(type='filepath', label='Upload first page JPG')
+            img22 = gr.Image(type='filepath', label='Upload second page JPG')
+            btn20 = gr.Button("Upload", size="sm")
+            title21 = gr.Text(label="Title")
+            text20 = gr.Text(label="OCR Result")
+            btn26 = gr.Button("Revise", size="sm")
+            state26 = gr.State(instr_eng)    # 利用state向界面函数传递参数
+            text26 = gr.Text(label="AI Revised")
+            btn20.click(fn=process_ocr01, inputs=[img21, img22], outputs=[title21, text20])
+            btn26.click(fn=process_revice, inputs=[state26,text20], outputs=[text26])
     with gr.Tab("记叙文批改"):
         with gr.Row():
             with gr.Column():
@@ -269,4 +282,5 @@ with gr.Blocks() as demo:
 if __name__ == "__main__":
     demo.launch(server_name='0.0.0.0',
                 auth=[('username', 'password'),
-                    ('guest', 'abcd123')])
+                    ('guest', 'abcd123'),
+                    ('mary', 'mary')])
