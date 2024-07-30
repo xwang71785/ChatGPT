@@ -15,9 +15,9 @@ import requests
 # OCR手写文字识别接口地址
 URL = "http://webapi.xfyun.cn/v1/service/v1/ocr/handwriting"
 # 应用APPID(必须为webapi类型应用,并开通手写文字识别服务,参考帖子如何创建一个webapi应用：http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=36481)
-APPID = "5e3638a9"
+APPID = ""
 # 接口密钥(webapi类型应用开通手写文字识别后，控制台--我的应用---手写文字识别---相应服务的apikey)
-API_KEY = "df5ccff737c81c51cdeee3fb8adfa0ab"
+API_KEY = ""
 def getHeader():
     curTime = str(int(time.time()))
     param = "{\"language\":\""+language+"\",\"location\":\""+location+"\"}"
